@@ -40,8 +40,8 @@ El parlante suena bajito, si querés más potencia, conecta tus auris a la salid
 1. Instalar [**Arduino IDE**](https://www.arduino.cc/en/software/)
 2. Añadir soporte para [**Raspberry Pi Pico / RP2040**](https://github.com/earlephilhower/arduino-pico)
 3. Clonar este repositorio, copiar los contenidos de la carpeta Libraries en la de Arduino de tu sistema. La libreria AMY de este proyecto esta modificada para funcionar con menor latencia.
-4. Con el badge apagado, mantener el botón Bootsel de la capa trasera de la PCB, conectar por USB a la computadora y encender. En la computadora aparecera como unidad FLASH RPI-RP2. 
-5. En Arduino IDE subir uno de los códigos seleccionando el puerto UF2 BOARD. Normalmente este procedimiento es necesario solo una vez. A partir de ahí, el Arduino IDE reconocerá el puerto USB.
+4. Con el badge apagado, mantener el botón Bootsel de la cara trasera de la PCB, conectar por USB a la computadora y encender. En la computadora aparecerá como unidad FLASH RPI-RP2. 
+5. En Arduino IDE subir uno de los códigos seleccionando el puerto UF2 BOARD. Normalmente este procedimiento es necesario sólo una vez. A partir de ahí, el Arduino IDE reconocerá el puerto USB.
 
 Los firmware se encuentran en Firmware/Ekoparty_DrDre (firmware por defecto), y un firmware extra Firmware/Ekoparty_SynthDrum . Dentro de cada carpeta hay una Build donde se encuentran los UF2. Estos binarios permiten cargar el firmware sin necesidad de compilar. Por ejemplo: Firmware/Ekoparty_SynthDrum/build/rp2040.rp2040.rpipico/Ekoparty_SynthDrum.ino.uf2. 
 Para cargar un .uf2, de nuevo, mantener bootsel antes de prender/conectar badge a la computadora, una vez conectado aparece como RPI-RP2 FLASH DRIVE, arrastrar .uf2.
