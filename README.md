@@ -1,7 +1,7 @@
 # Ekoparty Badge 2025
 Sampler y sintetizador portátil con interfaz táctil resistiva
 
-<img width="800" height="800" alt="top" src="https://github.com/user-attachments/assets/4f4eef39-ad58-40c7-97ec-2b52d8b22233" />
+<img width="400" height="400" alt="top" src="https://github.com/user-attachments/assets/4f4eef39-ad58-40c7-97ec-2b52d8b22233" />
 
 ## ✨ Características principales
 - **Microcontrolador RP2040:** [Core de Earle Philhower](https://github.com/earlephilhower/arduino-pico) para Arduino
@@ -14,6 +14,6 @@ Sampler y sintetizador portátil con interfaz táctil resistiva
 - **10 LEDs NeoPixel** para backlight del PCB
 - **4 sensores táctiles resistivos** integrados en el PCB para controlar/modular sonidos
 - **Secuenciador integrado**
-- **Reproductor de samples, síntetizador y efectos**
+- **Reproductor de samples, sintetizador y efectos**
 
   
