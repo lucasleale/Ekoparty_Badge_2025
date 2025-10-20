@@ -18,7 +18,8 @@ Sampler y sintetizador portátil con interfaz táctil resistiva
 
 ## Cómo utilizar
 <img width="1371" height="706" alt="Badge (1)" src="https://github.com/user-attachments/assets/4f605918-3534-4945-80dd-0dc6b43e8bf5" />
-[MANUAL DE USUARIO](https://github.com/lucasleale/Ekoparty_Badge_2025/blob/main/Ekoparty%20Badge%202025%20-Manual%20de%20uso.pdf)
+
+[Manual de usuario](https://github.com/lucasleale/Ekoparty_Badge_2025/blob/main/Ekoparty%20Badge%202025%20-Manual%20de%20uso.pdf)
 Antes que nada, *precaución!*, a diferencia de un aparato normal adentro de un gabinete, el badge tiene la electrónica al descubierto. Por lo cual hay que tener cuidado donde apoyarlo, ya que si lo apoyamos sobre algo metálico/conductor, hará cortocircuito en los cientos de componentes que tiene en la cara trasera. Incluso con el badge apagado, ya que la bateria conserva voltaje y alimenta el sector de gestión de carga. *Cuidado!*
 
 Con la pila cargada o el badge conectado por USB-C, prendelo con el mini switch que se encuentra del lado derecho de la PCB. Una vez encendido los LEDs de backlight harán una secuencia de luces indicando modo standby.
