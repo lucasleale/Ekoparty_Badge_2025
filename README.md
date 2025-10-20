@@ -46,3 +46,13 @@ El parlante suena bajito, si querés más potencia, conecta tus auris a la salid
 Los firmware se encuentran en [Firmware/Ekoparty_DrDre](https://github.com/lucasleale/Ekoparty_Badge_2025/tree/main/Firmware/Ekoparty_DrDre) (firmware por defecto), y un firmware extra [Firmware/Ekoparty_SynthDrum](https://github.com/lucasleale/Ekoparty_Badge_2025/tree/main/Firmware/Ekoparty_SynthDrum) . Dentro de cada carpeta hay una Build donde se encuentran los UF2. Estos binarios permiten cargar el firmware sin necesidad de compilar. Por ejemplo: [Firmware/Ekoparty_SynthDrum/build/rp2040.rp2040.rpipico/Ekoparty_SynthDrum.ino.uf2](https://github.com/lucasleale/Ekoparty_Badge_2025/tree/main/Firmware/Ekoparty_SynthDrum/build/rp2040.rp2040.rpipico). 
 Para cargar un .uf2, de nuevo mantener bootsel antes de prender/conectar badge a la computadora, una vez conectado aparece como RPI-RP2 FLASH DRIVE, arrastrar .uf2 a la unidad.
 
+
+## Créditos
+Jorge Crowe (aka monstruoMIDI):
+Concepto y coordinación de proyecto
+
+Lucas Leal:
+Desarrollo Hardware & Software
+
+Nico Restbergs (aka Fábrica Marciana):
+Diseño gráfico orientado a PCB
