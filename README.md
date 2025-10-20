@@ -38,7 +38,7 @@ El parlante suena bajito, si querés más potencia, conecta tus auris a la salid
 ## Cómo compilar
 
 1. Instalar [**Arduino IDE**](https://www.arduino.cc/en/software/)
-2. Añadir soporte para [**Raspberry Pi Pico / RP2040**(https://github.com/earlephilhower/arduino-pico)]
+2. Añadir soporte para [**Raspberry Pi Pico / RP2040**](https://github.com/earlephilhower/arduino-pico)
 3. Clonar este repositorio, copiar los contenidos de la carpeta Libraries en la de Arduino de tu sistema. La libreria AMY de este proyecto esta modificada para funcionar con menor latencia.
 4. Con el badge apagado, mantener el botón Bootsel de la capa trasera de la PCB, conectar por USB a la computadora y encender. En la computadora aparecera como unidad FLASH RPI-RP2. 
 5. En Arduino IDE subir uno de los códigos seleccionando el puerto UF2 BOARD. Normalmente este procedimiento es necesario solo una vez. A partir de ahí, el Arduino IDE reconocerá el puerto USB.
