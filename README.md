@@ -6,7 +6,7 @@ Sampler y sintetizador portátil con interfaz táctil resistiva
 ## ✨ Características principales
 - **Microcontrolador RP2040:** [Core de Earle Philhower](https://github.com/earlephilhower/arduino-pico) para Arduino
 - **Libreria de audio:** [AMY](https://github.com/shorepine/amy)
-- **DAC:** PCM5100 – 24 bits / 96 kHz, alta fidelidad
+- **DAC I2S:** PCM5100 – 24 bits / 96 kHz, alta fidelidad
 - **Amps:**
   - TPA6138 – salida de auriculares
   - TPA2028 (control I2C) – salida de parlante integrado
@@ -16,4 +16,14 @@ Sampler y sintetizador portátil con interfaz táctil resistiva
 - **Secuenciador integrado**
 - **Reproductor de samples, sintetizador y efectos**
 
-  
+## Cómo utilizar
+Antes que nada, *precaucion!*, a diferencia de un aparato normal adentro de un gabinete, el badge tiene la electrónica al descubierto. Por lo cual hay que tener cuidado donde apoyarlo, ya que si lo apoyamos sobre algo metálico/conductor, hará cortocircuito en los cientos de componentes que tiene en la cara trasera. Incluso con el badge apagado, ya que la bateria conserva voltaje y alimenta el sector de gestión de carga. *Cuidado!*
+
+Con la pila cargada o el badge conectado por USB-C, prendelo con el mini switch que se encuentra del lado derecho de la PCB. Una vez encendido los LEDs de backlight harán una secuencia de luces indicando modo standby.
+El badge cuenta con 4 sensores táctiles analógicos, es decir, que al tocarlos con los dedos, generarán una caida de voltaje correspondiente a la resistencia de la piel más la resistencia del circuito. Estas variaciones de voltaje son leída por los 4 ADC de la RP2040 para controlar distintos parámetros. Básicamente estos sensores funcionan cuando el dedo cierra el circuito entre el nodo del ADC y GND, a mayor presión/superficie del dedo, mayor resistencia.
+Los 4 sensores son: el número 21, el diamante, y las dos orejas inferiores. En el caso las orejas, la cara superior es el nodo del ADC, y la cara trasera es GND, por lo tanto hay que tocar ambas caras de la PCB para obtener una lectura correcta y estable.
+
+El firmware que viene cargado por defecto en tu badge es una demo que tiene cargados samples del tema Still de Dr Dre. En este firmware, al presionar el diamante una vez (sin mantener) se activará el secuenciador, que tiene la información de reproducción de cada sample individual del tema. Los LEDs comenzarán a parpadear al ritmo de la música. El sensor del número 21 dispara distintas voces del tema de forma aleatoria. 
+Los dos sensores de las orejas, a diferencia de los anteriores que funcionan como botón,  funcionan como un control continuo. La oreja izquierda (mirando el badge de frente), funciona como un pitch shifter (efecto que cambia la altura tonal de los sonidos), presionando con distintas intentisidades escucharás que el sonido se hace mas grave o mas agudo **tonalmente**.
+La oreja derecha funciona como un filtro pasa altos, a mayor presión, filtrará mas frecuencias graves, por lo cual el sonido sonará mas agudo **timbricamente**. Probá jugar con distintas velocidades y presiones!
+Para frenar la reproducción, volve a tocar el diamante. También podes tocar el 21 y que suenen las voces (y aplicarle los efectos de las orejas) sin la música. 
