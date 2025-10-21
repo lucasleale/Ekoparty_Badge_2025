@@ -1,5 +1,5 @@
 #ifndef AMY_PCM_SET
-#define AMY_PCM_SET 0   // 0 = TINY, 1 = CUSTOM1, 2 = CUSTOM2
+#define AMY_PCM_SET 1   // 0 = TINY, 1 = CUSTOM1, 2 = CUSTOM2
 #endif
 
 #if AMY_PCM_SET == 1
