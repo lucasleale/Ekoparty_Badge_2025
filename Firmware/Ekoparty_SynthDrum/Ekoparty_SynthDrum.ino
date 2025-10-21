@@ -26,6 +26,7 @@
 #define MIN_SENSORS 300  //varias pruebas y calibraciones dan rango usable de MIN_SENSORS-MAX_SENSORS en ADC 10 bits (0-1023)
 #define MAX_SENSORS 1021
 #define THRESH_BUTTON 900  //umbral para sensor2 y 4 como botones, responden mejor.
+
 //timers, easy mode. Para fades
 elapsedMillis led2;  //pad2
 elapsedMillis led4;  //pad4
@@ -109,16 +110,17 @@ void setup() {
   e.patch_number = 23;
   e.num_voices = 1;
   amy_add_event(&e);
-  //////
+  
 }
 
 void loop() {
-
   amy_update();  //procesamiento de audio
   checkJack();   //detecta estado del jack 3.5mm, activa parlante o auris
   updateSensors();
   fadeLeds();
+ 
 }
+
 
 
 void updateSensors() {  //4 sensores de la clase touchSensor (fir filter, debounce, thresholds)
@@ -128,16 +130,13 @@ void updateSensors() {  //4 sensores de la clase touchSensor (fir filter, deboun
   handleSensor4();
 }
 
-
-
-
 void handleSensor1() {
   if (sensor1.update()) {
-    int sensor1Value = sensor1.getFiltered();  //filtro FIR
-    int sensor1Leds = map(sensor1Value, MIN_SENSORS, MAX_SENSORS, 255, 0); //map ADC a brillo de leds
-    int sensor1Pitch = map(sensor1Value, MIN_SENSORS, MAX_SENSORS, NUM_NOTES - 1, 0); //map ADC a array mi menor
-    sensor1Pitch = constrain(sensor1Pitch, 0, NUM_NOTES - 1); //limit
-    sensor1Leds = constrain(sensor1Leds, 0, 255); //limit
+    int sensor1Value = sensor1.getFiltered();                                          //filtro FIR
+    int sensor1Leds = map(sensor1Value, MIN_SENSORS, MAX_SENSORS, 255, 0);             //map ADC a brillo de leds
+    int sensor1Pitch = map(sensor1Value, MIN_SENSORS, MAX_SENSORS, NUM_NOTES - 1, 0);  //map ADC a array mi menor
+    sensor1Pitch = constrain(sensor1Pitch, 0, NUM_NOTES - 1);                          //limit
+    sensor1Leds = constrain(sensor1Leds, 0, 255);                                      //limit
 
     for (int i = 0; i < NUM_LEDS / 2; i++) {
       if (sensor1Leds < 10) {
@@ -163,7 +162,7 @@ void handleSensor2() {
     if (sensor2.getFiltered() < THRESH_BUTTON && adc2button == false) {
       adc2button = true;
       playSamples(1, 1);  //dispara sample voice, preset
-      led2 = 0; //start fade
+      led2 = 0;           //start fade
     }
     if (sensor2.getFiltered() > THRESH_BUTTON && adc2button == true) {
       adc2button = false;
@@ -274,7 +273,7 @@ void checkJack() {
     } else {
       Serial.println("HEADPHONES");
       amy_event global = amy_default_event();
-      global.volume = 5;
+      global.volume = 1;
       global.eq_l = 0;
       global.eq_m = 0;
       global.eq_h = 0;
