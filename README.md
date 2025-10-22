@@ -48,6 +48,18 @@ Los firmware se encuentran en [Firmware/Ekoparty_DrDre](https://github.com/lucas
 Para cargar un .uf2, de nuevo mantener bootsel antes de prender/conectar badge a la computadora, una vez conectado aparece como RPI-RP2 FLASH DRIVE, arrastrar .uf2 a la unidad.
 
 
+## Cargar samples personalizados
+
+1. Con un programa como [Audacity](https://www.audacityteam.org/) abrir el audio deseado, exportar como RAW MONO SAMPLE RATE 22050Hz
+2. En la carpeta scripts hay un script de python para convertir el archivo .raw en .h. El archivo resultante genera un array de int16_t con todas las muestras de audio.
+3. Para usar script: python3 raw2h.py [file.raw] [file.h]
+4. En el src de la libreria AMY, en archivo pcm_custom1.h se encuentra la config de los samples. Ahi se define cuántos samples, el largo total de TODOS los samples (PCM_LENGTH). Un array 2D donde:
+   {startSample, endSample, loopStart, loopEnd, midiNote} de cada sample. La información de todos los samples se carga en otro archivo, en un solo array. Entonces acá por cada sample, el startSample es acumulativo.
+5. En el archivo pcm_samples_custom1.h se guarda la información de todos los samples de audio en un solo array. A medida que vayas exportando y conviertiendo los raw a .h, los vas a copiar aca uno despues del otro, siempre
+   teniendo en cuenta cuanto ocupa cada sample. El tamaño total del array pcm es el tamaño de todos los samples uno después del otro.
+6. Se pueden usar distintos bancos de samples, en el archivo amy_pcm_select.h se define que banco se usará.
+7. Muchos pasos no? Podría hacerse un script que haga todo esto? :)
+   
 ## Créditos
 Jorge Crowe (aka monstruoMIDI):
 Concepto y coordinación de proyecto
