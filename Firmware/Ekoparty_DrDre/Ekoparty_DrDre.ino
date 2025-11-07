@@ -1,9 +1,7 @@
 #include <Wire.h>
-
 #include <Adafruit_NeoPixel.h>
 #include "fscale.h"
 #include <elapsedMillis.h>
-
 #include <AMY-Arduino.h>
 #include <Filters.h>
 #include <Arduino.h>
@@ -25,10 +23,13 @@ Adafruit_NeoPixel leds(NUM_LEDS, 25, NEO_GRB + NEO_KHZ800);
 
 #define TPA2028_ADDR 0x58
 #define TPA2028_REG_GAIN 0x05
-#define PAD_0_PIN A0               //oreja derecha
-#define PAD_1_PIN A1               //21
-#define PAD_2_PIN A2               //oreja izquierda
-#define PAD_3_PIN A3               //diamante
+#define PAD_0_PIN A0  //oreja derecha
+#define PAD_1_PIN A1  //21
+#define PAD_2_PIN A2  //oreja izquierda
+#define PAD_3_PIN A3  //diamante
+#define THRESH_DIAM 950
+#define THRESH_21 900
+#define DEBUG //comentar define para sacar debug. Debug imprime valores de las orejas 
 const double f_s = 250;            // Frecuencia de muestreo para filtro notch
 const double f_c = 60;             // notch 60hz
 const double f_n = 2 * f_c / f_s;  //normalizada
@@ -222,7 +223,7 @@ void loop() {
     leds.setPixelColor(4, leds.Color(255 - fadeLedSn, 255 - fadeLedSn, 255 - fadeLedSn));
     leds.show();
   }
-  if(fadeLedVocal < 255){
+  if (fadeLedVocal < 255) {
     leds.setPixelColor(2, leds.Color(0, 255 - fadeLedVocal, 255 - fadeLedVocal));
     leds.setPixelColor(7, leds.Color(0, 255 - fadeLedVocal, 255 - fadeLedVocal));
     leds.show();
@@ -238,7 +239,13 @@ void updateSensors() {
     float freqLed;
     float pitchLed;
     int pitch = filter2b(filter1b(rawb)) / 8;
+#ifdef DEBUG
+    Serial.print(pitch);
+    Serial.print(", ");
+    Serial.println(freq);
+#endif
     pitchLed = map(pitch, 40, 127, 255, 0);
+
     pitch = map(pitch, 40, 127, 0, 36);
     freqLed = map(freq, 40, 127, 255, 0);
     freq = map(freq, 40, 127, 15000, 20);
@@ -290,7 +297,7 @@ void updateSensors() {
   }
 
   //Serial.println(adc3);
-  if (adc3 < 1000 && adc3button == false) {
+  if (adc3 < THRESH_DIAM && adc3button == false) {
     // recién detectado "botón presionado"
     bounceAdc3 = 0;
 
@@ -306,13 +313,13 @@ void updateSensors() {
     //delay(50);
 
     count++;
-  } else if (adc3 >= 1000 && adc3button == true && bounceAdc3 > 25) {
+  } else if (adc3 >= THRESH_DIAM && adc3button == true && bounceAdc3 > 25) {
     // se soltó el "botón", reseteo el estado
     //Serial.println("untouch");
     bounceAdc3 = 0;
     adc3button = false;
   }
-  if (adc1 < 900 && adc1button == false) {
+  if (adc1 < THRESH_21 && adc1button == false) {
     // recién detectado "botón presionado"
 
     adc1button = true;
@@ -323,7 +330,7 @@ void updateSensors() {
     //Serial.println(start);
 
 
-  } else if (adc1 >= 900 && adc1button == true) {
+  } else if (adc1 >= THRESH_21 && adc1button == true) {
     // se soltó el "botón", reseteo el estado
     //Serial.println("untouch");
     adc1button = false;
@@ -417,4 +424,3 @@ void splash(unsigned long tiempoTotal, unsigned long fadeDuracion, unsigned long
     leds.show();
   }
 }
-
