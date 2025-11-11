@@ -27,8 +27,8 @@ Adafruit_NeoPixel leds(NUM_LEDS, 25, NEO_GRB + NEO_KHZ800);
 #define PAD_1_PIN A1  //21
 #define PAD_2_PIN A2  //oreja izquierda
 #define PAD_3_PIN A3  //diamante
-#define THRESH_DIAM 950
-#define THRESH_21 900
+#define THRESH_DIAM 1000
+#define THRESH_21 1000
 #define DEBUG //comentar define para sacar debug. Debug imprime valores de las orejas 
 const double f_s = 250;            // Frecuencia de muestreo para filtro notch
 const double f_c = 60;             // notch 60hz
@@ -240,8 +240,13 @@ void updateSensors() {
     float pitchLed;
     int pitch = filter2b(filter1b(rawb)) / 8;
 #ifdef DEBUG
+    Serial.print("21: ");
+    Serial.print(adc1);
+    Serial.print(" | diam: ");
+    Serial.print(adc3);
+    Serial.print(" | ear1: ");
     Serial.print(pitch);
-    Serial.print(", ");
+    Serial.print(" | ear2: ");
     Serial.println(freq);
 #endif
     pitchLed = map(pitch, 40, 127, 255, 0);
@@ -297,6 +302,7 @@ void updateSensors() {
   }
 
   //Serial.println(adc3);
+
   if (adc3 < THRESH_DIAM && adc3button == false) {
     // recién detectado "botón presionado"
     bounceAdc3 = 0;
